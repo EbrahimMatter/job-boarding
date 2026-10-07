@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <h1 className="font-bold text-4xl ">Job Board</h1>
-      <p>AI Assistant</p>
+      <p>Welcome to Production app</p>
     </div>
   );
 }
