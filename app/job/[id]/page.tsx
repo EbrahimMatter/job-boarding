@@ -11,8 +11,7 @@ export default function JobPage({ params }: JobPageProps) {
   return (
     <main>
       <h1>Job Details</h1>
-      {/* Reasoning: The page root renders instantly. The specific job data is isolated 
-          inside Suspense, allowing Next.js to prerender the outer shell successfully. */}
+
       <Suspense fallback={<p>Loading job...</p>}>
         <JobDetails paramsPromise={params} />
       </Suspense>

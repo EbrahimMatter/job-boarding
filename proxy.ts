@@ -9,12 +9,11 @@ export function proxy(request: NextRequest) {
   if (isAdminHost) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
-  
 }
 
 // Alternatively, you can use a default export:
 // export default function proxy(request: NextRequest) { ... }
 
 export const config = {
-  matcher: [],
+  matcher: ["/((?!api|_next/static|_next/image|.*\\.png$).*)"],
 };
