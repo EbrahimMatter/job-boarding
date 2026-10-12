@@ -6,10 +6,7 @@ function getHostname(hostHeader: string | null) {
 }
 
 function isAdminHost(hostname: string) {
-  return (
-    hostname === "admin.localhost" ||
-    hostname.startsWith("admin.")
-  );
+  return hostname === "admin.localhost" || hostname.startsWith("admin.");
 }
 
 export function proxy(request: NextRequest) {
