@@ -1,7 +1,6 @@
 import { Suspense } from "react";
 
-// ❌ Anti-pattern: Reading params directly in the root page without Suspense
-// export default async function JobPage({ params }) { ... }
+
 
 type JobPageProps = {
   params: Promise<{ id: string }>;

@@ -1,18 +1,29 @@
-import { NextResponse } from "next/server";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-// This function can be marked `async` if using `await` inside
-export function proxy(request: NextRequest) {
-  const host = request.headers.get("host");
-
-  const isAdminHost = host?.includes("admin.wazifa.app");
-  if (isAdminHost) {
-    return NextResponse.redirect(new URL("/dashboard", request.url));
-  }
+function getHostname(hostHeader: string | null) {
+  if (!hostHeader) return "";
+  return hostHeader.split(":")[0].toLowerCase();
 }
 
-// Alternatively, you can use a default export:
-// export default function proxy(request: NextRequest) { ... }
+function isAdminHost(hostname: string) {
+  return (
+    hostname === "admin.localhost" ||
+    hostname.startsWith("admin.")
+  );
+}
+
+export function proxy(request: NextRequest) {
+  const hostname = getHostname(request.headers.get("host"));
+  const pathname = request.nextUrl.pathname;
+
+  if (isAdminHost(hostname) && pathname === "/") {
+    const url = request.nextUrl.clone();
+    url.pathname = "/dashboard";
+    return NextResponse.redirect(url);
+  }
+
+  return NextResponse.next();
+}
 
 export const config = {
   matcher: ["/((?!api|_next/static|_next/image|.*\\.png$).*)"],
