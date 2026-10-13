@@ -1,5 +1,7 @@
 import React from "react";
 
+export const dynamic = "force-dynamic";
+
 type props = {
   params: Promise<{ jobId: string }>;
 };

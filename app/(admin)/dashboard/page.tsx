@@ -1,7 +1,11 @@
-import React from "react";
-
+import { Button } from "@/components/ui/button";
 function Dashboard() {
-  return <div> Admin Dashboard</div>;
+  return (
+    <div>
+      <div>Admin Dashboard</div>
+      <Button>Brows jobs</Button>
+    </div>
+  );
 }
 
 export default Dashboard;
