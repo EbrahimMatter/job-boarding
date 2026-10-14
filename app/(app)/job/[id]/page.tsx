@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 
-
+export const instant = false;
 
 type JobPageProps = {
   params: Promise<{ id: string }>;
